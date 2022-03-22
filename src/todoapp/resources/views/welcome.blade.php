@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Todo List
+                    Task List
                 </div>
 
                 <div class="links">

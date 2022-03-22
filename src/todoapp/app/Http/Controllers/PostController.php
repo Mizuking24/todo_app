@@ -44,7 +44,7 @@ class PostController extends Controller
         $task = $task_data->first();
 
         $user_data = User::where('id', $task->user_id);
-        if(!$user_id->exists()) {
+        if(!$user_data->exists()) {
             abort(404);
         }
         $user = $user_data->first();
@@ -53,5 +53,39 @@ class PostController extends Controller
             'task' => $task,
             'user' => $user,
         ]);
+    }
+
+    public function edit(Request $request) {
+        $task_data = Post::where('id', $request->id);
+        if(!$task_data->exists()) {
+            abort(404);
+        }
+        $task = $task_data->first();
+        return view('post.edit', [
+            'task' => $task,
+        ]);
+    }
+
+    public function update(Request $request) {
+        if(!empty(Post::find($request->id))) {
+            $task = $request->input('task');
+            $limit = $request->input('date');
+            $status = $request->input('status');
+            Post::find($request->id)->update([
+                "task" => $task,
+                "limit" => $limit,
+                "status" => $status,
+            ]);
+            return redirect(route('post.show', ['id' => $request->id]));
+        } else {
+            abort(404);
+        }
+    }
+
+    public function destroy(Request $request) {
+        if(!empty(Post::find($request->id))) {
+            $task = Post::find($request->id)->delete();
+        }
+        return redirect(route('post'));
     }
 }

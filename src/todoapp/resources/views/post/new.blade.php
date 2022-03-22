@@ -39,8 +39,8 @@
                     </tr>
                   </table>
                 </form>
+                <a href="{{ route('post') }}">タスク一覧に戻る</a>
               </div>
-              <a href="{{ route('post') }}">タスク一覧に戻る</a>
           </div>
       </div>
   </div>

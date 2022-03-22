@@ -21,14 +21,14 @@
                         <td><a href="{{ route('post.show', ['id' => $post->id ]) }}">{{ $post->task }}</a></td>
                         <td>{{ $post->limit }}</td>
                         <td></td>
-                        @if($post->user_id === $user->id)
-                          <td>
-                            <form method="POST" action="">
+                        <td>
+                          @if($post->user_id === $user->id)
+                            <form method="POST" action="{{ route('post.destroy', ['id' => $post->id]) }}">
                               @csrf
-                              <input type="submit" value="削除" onclick="window.confirm('{{ $post->title }}');">
+                              <input type="submit" class="btn btn-outline-danger" value="削除" onclick="window.confirm('{{ $post->task }}を削除します。よろしいですか？');">
                             </form>
-                          </td>
-                        @endif
+                          @endif
+                        </td>
                       </tr>
                     @endif
                   @endforeach
@@ -59,9 +59,9 @@
                         <td></td>
                         @if($post->user_id === $user->id)
                           <td>
-                            <form method="POST" action="">
+                            <form method="POST" action="{{ route('post.destroy', ['id' => $post->id]) }}">
                               @csrf
-                              <input type="submit" value="削除" onclick="window.confirm('{{ $post->title }}');">
+                              <input type="submit" class="btn btn-outline-danger" value="削除" onclick="window.confirm('{{ $post->task }}を削除します。よろしいですか？');">
                             </form>
                           </td>
                         @endif
@@ -93,9 +93,9 @@
                         <td>{{ $post->limit }}</td>
                         @if($post->user_id === $user->id)
                           <td>
-                            <form method="POST" action="">
+                            <form method="POST" action="{{ route('post.destroy', ['id' => $post->id]) }}">
                               @csrf
-                              <input type="submit" value="削除" onclick="window.confirm('{{ $post->title }}');">
+                              <input type="submit" class="btn btn-outline-danger" value="削除" onclick="window.confirm('{{ $post->task }}を削除します。よろしいですか？');">
                             </form>
                           </td>
                         @endif
